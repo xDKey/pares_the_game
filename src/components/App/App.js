@@ -1,9 +1,14 @@
 import './App.css';
+import Card from "../Card/Card";
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <h1>Hello, world!</h1>
+    <div className="game-field">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
     </div>
   );
 }
