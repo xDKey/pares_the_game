@@ -1,16 +1,13 @@
+import React from 'react';
 import './App.css';
-import Card from "../Card/Card";
+import CardList from "../CardList/CardList";
 
 const App = () => {
-
-  return (
-    <div className="game-field">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-    </div>
-  );
+    return (
+        <div className="game-field">
+            <CardList />
+        </div>
+    );
 }
 
 export default App;
