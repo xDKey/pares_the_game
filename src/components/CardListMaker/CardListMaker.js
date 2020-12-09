@@ -1,4 +1,4 @@
-export const CardListMaker = (num = 8) => {
+export const CardListMaker = (num = 16) => {
     const cards = [];
     for (let i = 1; i <= num; i += 2) {
         const color = getRandomColor();
