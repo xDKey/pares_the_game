@@ -6,6 +6,7 @@ const CardList = ({ cards }) => {
     const cardList = cards.map(item => <Card
                                         key={item.id}
                                         id={item.id}
+                                        color={item.color}
                                         isFlipped={item.isFlipped}
                                         isOpened={item.isOpened}/>)
     return (
