@@ -4,8 +4,8 @@ const initialState = {
     round: 1,
     selectedItem: null,
     score: 0,
-    maxScore: 9, //количество карт + условие победы
-    cards: CardListMaker(9)
+    maxScore: 16, //количество карт = условие победы
+    cards: CardListMaker()
 };
 
 const reducer = (state = initialState, action) => {
@@ -64,6 +64,7 @@ const reducer = (state = initialState, action) => {
 
         return newState;
     }
+    if (action.type === 'RESET') return initialState;
     return state;
 }
 
