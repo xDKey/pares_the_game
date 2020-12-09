@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pares_the_game/static/css/main.b9915715.chunk.css",
-    "main.js": "/pares_the_game/static/js/main.24211123.chunk.js",
-    "main.js.map": "/pares_the_game/static/js/main.24211123.chunk.js.map",
+    "main.js": "/pares_the_game/static/js/main.fbec912f.chunk.js",
+    "main.js.map": "/pares_the_game/static/js/main.fbec912f.chunk.js.map",
     "runtime-main.js": "/pares_the_game/static/js/runtime-main.11bb6695.js",
     "runtime-main.js.map": "/pares_the_game/static/js/runtime-main.11bb6695.js.map",
     "static/js/2.4cc41481.chunk.js": "/pares_the_game/static/js/2.4cc41481.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.11bb6695.js",
     "static/js/2.4cc41481.chunk.js",
     "static/css/main.b9915715.chunk.css",
-    "static/js/main.24211123.chunk.js"
+    "static/js/main.fbec912f.chunk.js"
   ]
 }
