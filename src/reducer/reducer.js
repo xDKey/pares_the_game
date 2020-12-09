@@ -3,13 +3,14 @@ import { CardListMaker } from '../components/CardListMaker/CardListMaker';
 const initialState = {
     round: 1,
     selectedItem: null,
-    cards: CardListMaker()
+    score: 0,
+    maxScore: 9, //количество карт + условие победы
+    cards: CardListMaker(9)
 };
 
 const reducer = (state = initialState, action) => {
     if (action.type === 'FLIP') {
         const idxCard = state.cards.find(card => card.id === action.id)
-
         //проверка, не пытаемся ли открыть открытую карту
         if (idxCard.isFlipped || idxCard.isOpened) return state;
 
@@ -22,6 +23,8 @@ const reducer = (state = initialState, action) => {
             //записываем группу выбранной карты в хранилище
             newState = {round,
                 selectedItem: idxCard.group,
+                score: state.score,
+                maxScore: state.maxScore,
                 cards: state.cards.map(card => {
                 return card.id === action.id ?
                     {...card, isFlipped: true} :
@@ -34,6 +37,8 @@ const reducer = (state = initialState, action) => {
             //если группа открытой карты совпадает с записанной в хранилище, то меняем флаги на true
             if(idxCard.group === state.selectedItem){
                 newState = {round,
+                    score: state.score + 2,
+                    maxScore: state.maxScore,
                     selectedItem: state.selectedItem,
                     cards: state.cards.map(card => {
                         return (card.id === action.id || card.group === state.selectedItem) ?
@@ -45,6 +50,8 @@ const reducer = (state = initialState, action) => {
             //если группа открытой карты не совпадает с записанной в хранилище, то просто показываем её
             if(idxCard.group !== state.selectedItem){
                 newState = {round,
+                    score: state.score,
+                    maxScore: state.maxScore,
                     selectedItem: state.selectedItem,
                     cards: state.cards.map(card => {
                         return card.id === action.id ?
