@@ -14,5 +14,6 @@
     background: grey;
 }
 .opened{
-    background: greenyellow;
+    transition-duration: 1s ;
+    opacity: 0;
 }

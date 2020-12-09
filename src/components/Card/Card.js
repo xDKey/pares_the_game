@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import './Card.css';
 
-const Card = ({ id, flip }) => {
+const Card = ({ id, isFlipped, isOpened, flip }) => {
+    const className = isOpened ? 'card flipped opened' : !isFlipped ? 'card' : 'card flipped';
     return (
-        <div className='card' onClick={() => flip(id)}>
+        <div className={className} onClick={() => flip(id)}>
         </div>
     )
 }
