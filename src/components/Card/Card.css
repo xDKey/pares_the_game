@@ -9,3 +9,10 @@
 .card:hover{
     transform: scale(1.05);
 }
+
+.flipped{
+    background: grey;
+}
+.opened{
+    background: greenyellow;
+}

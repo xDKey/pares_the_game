@@ -11,7 +11,6 @@ const Card = ({ id, flip }) => {
 }
 const mapStateToProps = state => {
     return {
-        check: state,
     }
 }
 
