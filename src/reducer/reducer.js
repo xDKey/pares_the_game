@@ -1,14 +1,12 @@
+import { CardListMaker } from '../components/CardListMaker/CardListMaker';
+
 const initialState = {
     round: 1,
     firstElement: null,
     secondElement: null,
-    cards: [
-        {id: 1, group: 1, isFlipped: false, isOpened: false},
-        {id: 2, group: 1, isFlipped: false, isOpened: false},
-        {id: 3, group: 2, isFlipped: false, isOpened: false},
-        {id: 4, group: 2, isFlipped: false, isOpened: false},
-    ]
+    cards: CardListMaker()
 };
+
 const reducer = (state = initialState, action) => {
     if (action.type === 'FLIP') {
         const idxCard = state.cards.find(card => card.id === action.id)
