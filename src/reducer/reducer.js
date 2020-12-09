@@ -12,11 +12,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     if (action.type === 'FLIP') {
         const idxCard = state.cards.find(card => card.id === action.id)
-        let newState = { round: state.round + 1 };
 
-        if(state.round % 2 === 1){
+        //проверка, не пытаемся ли открыть открытую карту
+        if (idxCard.isFlipped || idxCard.isOpened) return state;
 
-            newState = {...newState,
+        let newState = { };
+        let round = state.round + 1
+
+        //если раунт нечетный (открываем первую карту в паре)
+        if (state.round % 2 === 1){
+
+            //записываем группу выбранной карты в хранилище
+            newState = {round,
                 firstElement: idxCard.group,
                 secondElement: null,
                 cards: state.cards.map(card => {
@@ -25,9 +32,11 @@ const reducer = (state = initialState, action) => {
                     {...card, isFlipped: false}
                 })} ;
         }
+
         if(state.round % 2 === 0){
+
             if(idxCard.group === state.firstElement){
-                newState = {...newState,
+                newState = {round,
                     firstElement: state.firstElement,
                     secondElement: idxCard.group,
                     cards: state.cards.map(card => {
@@ -37,8 +46,9 @@ const reducer = (state = initialState, action) => {
                     })
                 }
             }
+
             if(idxCard.group !== state.firstElement){
-                newState = {...newState,
+                newState = {round,
                     firstElement: state.firstElement,
                     secondElement: idxCard.group,
                     cards: state.cards.map(card => {
@@ -49,7 +59,6 @@ const reducer = (state = initialState, action) => {
                 }
             }
         }
-        console.log(state);
 
         return newState;
     }
