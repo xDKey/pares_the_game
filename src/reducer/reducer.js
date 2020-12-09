@@ -10,7 +10,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     if (action.type === 'FLIP') {
-        const idxCard = state.cards.find(card => card.id === action.id)
+
+        const idxCard = state.cards.filter(card => card.id === action.id)[0];
+        // const idxCard = state.cards.find(card => card.id === action.id) //не поддерживается IE
+
         //проверка, не пытаемся ли открыть открытую карту
         if (idxCard.isFlipped || idxCard.isOpened) return state;
 
