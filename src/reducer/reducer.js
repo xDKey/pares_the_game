@@ -2,8 +2,7 @@ import { CardListMaker } from '../components/CardListMaker/CardListMaker';
 
 const initialState = {
     round: 1,
-    firstElement: null,
-    secondElement: null,
+    selectedItem: null,
     cards: CardListMaker()
 };
 
@@ -17,38 +16,36 @@ const reducer = (state = initialState, action) => {
         let newState = { };
         let round = state.round + 1
 
-        //если раунт нечетный (открываем первую карту в паре)
+        //если раунд нечетный (открываем первую карту в паре)
         if (state.round % 2 === 1){
 
             //записываем группу выбранной карты в хранилище
             newState = {round,
-                firstElement: idxCard.group,
-                secondElement: null,
+                selectedItem: idxCard.group,
                 cards: state.cards.map(card => {
                 return card.id === action.id ?
                     {...card, isFlipped: true} :
                     {...card, isFlipped: false}
                 })} ;
         }
-
+        //если раунд четный (открываем вторую карту в паре)
         if(state.round % 2 === 0){
 
-            if(idxCard.group === state.firstElement){
+            //если группа открытой карты совпадает с записанной в хранилище, то меняем флаги на true
+            if(idxCard.group === state.selectedItem){
                 newState = {round,
-                    firstElement: state.firstElement,
-                    secondElement: idxCard.group,
+                    selectedItem: state.selectedItem,
                     cards: state.cards.map(card => {
-                        return (card.id === action.id || card.group === state.firstElement) ?
+                        return (card.id === action.id || card.group === state.selectedItem) ?
                             {...card, isFlipped: true, isOpened: true } :
                             card
                     })
                 }
             }
-
-            if(idxCard.group !== state.firstElement){
+            //если группа открытой карты не совпадает с записанной в хранилище, то просто показываем её
+            if(idxCard.group !== state.selectedItem){
                 newState = {round,
-                    firstElement: state.firstElement,
-                    secondElement: idxCard.group,
+                    selectedItem: state.selectedItem,
                     cards: state.cards.map(card => {
                         return card.id === action.id ?
                             {...card, isFlipped: true} :
